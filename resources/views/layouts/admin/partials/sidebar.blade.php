@@ -61,23 +61,7 @@ Penjualan Tahunan
 </ul>
 
 </li>
-<li>
-<a class="nav-link" href="{{ route('laporan.penjualan.harian') }}">
-Penjualan Harian
-</a>
-</li>
 
-<li>
-<a class="nav-link" href="{{ route('laporan.penjualan.bulanan') }}">
-Penjualan Bulanan
-</a>
-</li>
-
-<li>
-<a class="nav-link" href="{{ route('laporan.penjualan.tahunan') }}">
-Penjualan Tahunan
-</a>
-</li>
 
 <li>
 <a class="nav-link" href="{{ route('laporan.pembelian') }}">
@@ -97,17 +81,7 @@ Laporan Cashflow
 </a>
 </li>
 
-<li>
-<a class="nav-link" href="{{ route('laporan.utang') }}">
-Laporan Utang Piutang
-</a>
-</li>
 
-<li>
-<a class="nav-link" href="{{ route('laporan.angsuran') }}">
-Laporan Angsuran
-</a>
-</li>
 
 </ul>
 

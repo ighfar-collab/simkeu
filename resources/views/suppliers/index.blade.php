@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
 
-    <div class="card col-md-6">
+    <div class="card col-md-12">
        
         <div class="card-body">
     <h4>Data Supplier</h4>
@@ -25,6 +25,8 @@
             <td>{{ $s->kontak }}</td>
             <td>
                 <a href="{{ route('suppliers.edit',$s->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                         <a href="{{ route('suppliers.edit',$s->id) }}" class="btn btn-success btn-sm">Riwayat Pembelian</a>
 
                 <form action="{{ route('suppliers.destroy',$s->id) }}" method="POST" style="display:inline">
                     @csrf

@@ -83,10 +83,7 @@ Route::resource('mitra', MitraController::class);
     Route::resource('bidang_kesehatan', BidangKesehatanMasyarakatController::class);
 Route::resource('bidang_pelayanan_kesehatan', BidangPelayananKesehatanMasyarakatController::class);
 Route::resource('cargo', CargoController::class);
-  // Route::get('/cargo', [CargoController::class, 'index'])->name('cargo.index');
-Route::resource('bidang_pencegahan', BidangPencegahanPenyakitMenularController::class);
-Route::resource('sumber_daya', BidangSumberDayaKesehatanMasyarakatController::class);
-Route::resource('sekretariat', SekretariatController::class);
+  // Route::get('/cargo', [CargoController::class, 'index'])->name('cargo.index')
 Route::resource('vehicle', VehicleController::class);
 
 Route::get('cargo/tracking/{cargoTracking}/edit', [CargoTrackingController::class,'edit']);
@@ -144,6 +141,11 @@ Route::delete('/installments/{installment}', [InstallmentController::class, 'des
      Route::post('barang/{id}/stok-masuk', [StokController::class, 'masuk'])->name('barang.stok-masuk');
 Route::post('barang/{id}/stok-keluar', [StokController::class, 'keluar'])->name('barang.stok-keluar');
 Route::delete('/pos/{transaction}', [PosController::class,'destroy'])->name('pos.destroy');
+Route::prefix('laporan-penjualan')->controller(LaporanController::class)->group(function () {
+    Route::get('/harian', 'harian')->name('penjualan.harian');
+    Route::get('/bulanan', 'bulanan')->name('penjualan.bulanan');
+    Route::get('/tahunan', 'tahunan')->name('penjualan.tahunan');
+});
 
 Route::resource('suppliers', SupplierController::class);
      Route::delete('/cashflow/{cashflow}', [CashFlowController::class,'destroy'])->name('cashflow.destroy');
@@ -151,21 +153,20 @@ Route::resource('suppliers', SupplierController::class);
     ->name('cashflow.deleteAll');
     Route::delete('/pos-delete-all', [PosController::class,'deleteAll'])
     ->name('pos.deleteAll');
-    Route::get('/laporan/penjualan', [LaporanController::class,'penjualan'])->name('laporan.penjualan');
+   
 Route::get('/laporan/pembelian', [LaporanController::class,'pembelian'])->name('laporan.pembelian');
 Route::get('/laporan/stok', [LaporanController::class,'stok'])->name('laporan.stok');
 Route::get('/laporan/cashflow', [LaporanController::class,'cashflow'])->name('laporan.cashflow');
-Route::get('/laporan/utang', [LaporanController::class,'utang'])->name('laporan.utang');
-Route::get('/laporan/angsuran', [LaporanController::class,'angsuran'])->name('laporan.angsuran');
+
 Route::prefix('laporan')->group(function(){
 
-Route::get('/penjualan/harian',[LaporanController::class,'penjualanHarian'])
+Route::get('/penjualan/harian',[LaporanController::class,'harian'])
 ->name('laporan.penjualan.harian');
 
-Route::get('/penjualan/bulanan',[LaporanController::class,'penjualanBulanan'])
+Route::get('/penjualan/bulanan',[LaporanController::class,'bulanan'])
 ->name('laporan.penjualan.bulanan');
 
-Route::get('/penjualan/tahunan',[LaporanController::class,'penjualanTahunan'])
+Route::get('/penjualan/tahunan',[LaporanController::class,'tahunan'])
 ->name('laporan.penjualan.tahunan');
 
 });
