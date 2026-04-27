@@ -1,214 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Monitoring Cargo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        body {
-            background: #f4f6f9;
-            color: #333;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: #2d7df6;
-            color: white;
-            padding: 15px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar h2 {
-            font-size: 20px;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: white;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .navbar a:hover {
-            background: rgba(255,255,255,0.35);
-        }
-
-        /* ===== STATS ===== */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        .pending { color: #f39c12; }
-        .proses  { color: #3498db; }
-        .transit { color: #9b59b6; }
-        .sampai  { color: #2ecc71; }
-
-        /* ===== TABLE ===== */
-        .table-container {
-            background: white;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        table th, table td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: center;
-            white-space: nowrap;
-        }
-
-        table th {
-            background: #f0f2f5;
-        }
-
-        .badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            color: white;
-            font-size: 13px;
-            display: inline-block;
-        }
-
-        .badge.pending { background: #f39c12; }
-        .badge.proses  { background: #3498db; }
-        .badge.transit { background: #9b59b6; }
-        .badge.sampai  { background: #2ecc71; }
-
-        footer {
-            text-align: center;
-            padding: 15px;
-            color: #777;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            .navbar h2 {
-                font-size: 16px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>SIMKEU - Sistem Informasi Keuangan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800">
 
-<!-- ===== NAVBAR ===== -->
-<div class="navbar">
-    <h2>🚚 Cargo Monitoring System</h2>
- 
-    <a href="{{ route('login') }}">Login</a>
-    
-</div>
-
-<!-- ===== SUMMARY ===== -->
-<section class="stats">
-    <div class="card pending">
-        <h3>12</h3>
-        <p>Pending</p>
-    </div>
-    <div class="card proses">
-        <h3>8</h3>
-        <p>Proses</p>
-    </div>
-    <div class="card transit">
-        <h3>5</h3>
-        <p>Transit</p>
-    </div>
-    <div class="card sampai">
-        <h3>20</h3>
-        <p>Sampai</p>
-    </div>
+<!-- HERO -->
+<section class="bg-blue-600 text-white py-20">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h1 class="text-4xl font-bold mb-4">
+      SIMKEU
+    </h1>
+    <p class="text-lg mb-6">
+      Sistem Informasi Keuangan untuk mengelola pemasukan, pengeluaran, dan laporan secara efisien.
+    </p>
+    <a href="{{ route('login') }}" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold">
+      Login
+    </a>
+  </div>
 </section>
 
-<!-- ===== TABLE ===== -->
-<section class="table-container">
-    <h3>📦 Data Cargo</h3>
+<!-- FEATURES -->
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-10">Fitur Utama</h2>
 
-    <table>
-        <thead>
-            <tr>
-                <th>No Resi</th>
-                <th>Pengirim</th>
-                <th>Tujuan</th>
-                <th>Berat (Kg)</th>
-                <th>Vehicle</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>CRG-001</td>
-                <td>PT Maju Jaya</td>
-                <td>Banda Aceh</td>
-                <td>120</td>
-                <td>Truck Fuso</td>
-                <td><span class="badge pending">Pending</span></td>
-            </tr>
-            <tr>
-                <td>CRG-002</td>
-                <td>Andi</td>
-                <td>Medan</td>
-                <td>80</td>
-                <td>Pickup</td>
-                <td><span class="badge proses">Proses</span></td>
-            </tr>
-            <tr>
-                <td>CRG-003</td>
-                <td>Siti</td>
-                <td>Lhokseumawe</td>
-                <td>200</td>
-                <td>Truck Box</td>
-                <td><span class="badge transit">Transit</span></td>
-            </tr>
-            <tr>
-                <td>CRG-004</td>
-                <td>CV Amanah</td>
-                <td>Bireuen</td>
-                <td>60</td>
-                <td>Pickup</td>
-                <td><span class="badge sampai">Sampai</span></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">💸 Pemasukan & Pengeluaran</h3>
+        <p>Catat semua transaksi keuangan dengan mudah.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">📊 Cash Flow</h3>
+        <p>Pantau arus kas secara real-time.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="font-bold text-xl mb-2">📈 Laporan</h3>
+        <p>Generate laporan harian, bulanan, dan tahunan.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-    © 2026 Cargo Monitoring System
+<!-- PREVIEW -->
+<section class="bg-gray-100 py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-6">Preview Sistem</h2>
+    <img src="https://via.placeholder.com/800x400" class="rounded-lg shadow mx-auto">
+  </div>
+</section>
+
+<!-- ADVANTAGE -->
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-10">Kenapa SIMKEU?</h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="font-bold">⚡ Cepat</h3>
+        <p>Akses data secara instan</p>
+      </div>
+
+      <div>
+        <h3 class="font-bold">🔒 Aman</h3>
+        <p>Data tersimpan dengan aman</p>
+      </div>
+
+      <div>
+        <h3 class="font-bold">📱 Responsif</h3>
+        <p>Bisa diakses dari semua device</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-blue-600 text-white py-16 text-center">
+  <h2 class="text-3xl font-bold mb-4">
+    Mulai Kelola Keuangan Anda Sekarang
+  </h2>
+  <a href="#" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold">
+    Coba Sekarang
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-800 text-white py-6 text-center">
+  <p>© 2026 SIMKEU - Sistem Informasi Keuangan</p>
 </footer>
 
 </body>
